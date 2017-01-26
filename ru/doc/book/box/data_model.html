@@ -1,0 +1,1558 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google-site-verification" content="CR40jzpLISkiUAw2MrH2zHSDNVmzyK88Nj7Crmx_RxQ" />
+    
+  <link rel="icon" type="image/png" sizes="16x16" href=../../../_static/favicon/favicon-16x16.png>
+  <link rel="icon" type="image/png" sizes="32x32" href=../../../_static/favicon/favicon-32x32.png>
+  <link rel="icon" type="image/png" sizes="96x96" href=../../../_static/favicon/favicon-96x96.png>
+
+    <title>3.1. Модель данных</title>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+      <script type="text/javascript" src="../../../_static/searchtools.js"></script>
+      <script type="text/javascript" src="../../../_static/js/menu.js"></script>
+      <script type="text/javascript" src="../../../_static/js/mobile_menu.js"></script>
+      <script type="text/javascript" src="../../../_static/js/stacktable.min.js"></script>
+      <script type="text/javascript" src="../../../_static/js/headers.js"></script>
+      <script type="text/javascript" src="../../../_static/js/dropdown.js"></script>
+      <script type="text/javascript" src="../../../_static/js/jquery.sticky-kit.min.js"></script>
+      <link rel="stylesheet" href="../../../_static/design.css">
+
+    
+    <!--[if lt IE 9]>
+      <script src="/js/ie8.js"></script>
+      <link rel="stylesheet" href="/theme/ie8.css" />
+    <![endif]-->
+    <script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-22120502-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- Rating@Mail.ru counter -->
+<script type="text/javascript">
+  var _tmr = _tmr || [];
+  _tmr.push({id: "2284916", type: "pageView", start: (new Date()).getTime()});
+  (function (d, w) {
+    var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true;
+    ts.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//top-fwz1.mail.ru/js/code.js";
+    var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+    if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+  })(document, window);
+</script>
+<noscript>
+  <div style="position:absolute;left:-10000px;">
+    <img src="//top-fwz1.mail.ru/counter?id=2284916;js=na" style="border:0;"
+         height="1" width="1" alt="Рейтинг@Mail.ru" />
+  </div>
+</noscript>
+<!-- //Rating@Mail.ru counter -->
+
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:       '',
+        VERSION:        '1.7.3',
+        COLLAPSE_INDEX:  false,
+        FILE_SUFFIX:    '.html',
+        HAS_SOURCE:      true
+      };
+      
+      
+      var disqus_config = function () {
+          this.page.identifier = "doc/book/box/data_model";
+          this.language        = "ru"
+      };
+      window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = []; t.ready = function(f) { t._e.push(f); };
+        return t;
+      }(document, "script", "twitter-wjs"));
+    </script>
+    
+
+  </head>
+  <body class="p-cols_design b-doc-doc_book_box_data_model">
+    <div class="b-wrapper">
+      <!-- HEADER > -->
+      
+  <header class="b-header">
+    <div class="b-header_menu_mobile">
+      <div class="b-burger-button">
+        <span></span>
+      </div>
+      <form role="search" class="b-header-search"
+            action="../../../search.html" method="get">
+        <input name="q" type="search">
+      </form>
+    </div>
+    <div class="b-menu_mobile">
+      <div class="b-menu_mobile__wrapper">
+        <nav class="b-header_menu">
+          
+  <ul class="b-menu">
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../index.html" class="b-menu-item-url">Overview</a>
+      </li>
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../try.html" class="b-menu-item-url">Try</a>
+      </li>
+    
+      
+      <li class="b-menu-item p-active">
+      
+        <a href="../../../doc.html" class="b-menu-item-url">Documentation</a>
+      </li>
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../download.html" class="b-menu-item-url">Download</a>
+      </li>
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../careers.html" class="b-menu-item-url">Careers</a>
+      </li>
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../rocks.html" class="b-menu-item-url">Rocks</a>
+      </li>
+    
+  </ul>
+
+        </nav>
+      </div>
+    </div>
+    <div class="b-header-wrapper">
+      <nav class="b-header_menu">
+        <div class="b-header_menu-top">
+          
+  <ul class="b-menu">
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../index.html" class="b-menu-item-url">Overview</a>
+      </li>
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../try.html" class="b-menu-item-url">Try</a>
+      </li>
+    
+      
+      <li class="b-menu-item p-active">
+      
+        <a href="../../../doc.html" class="b-menu-item-url">Documentation</a>
+      </li>
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../download.html" class="b-menu-item-url">Download</a>
+      </li>
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../careers.html" class="b-menu-item-url">Careers</a>
+      </li>
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../rocks.html" class="b-menu-item-url">Rocks</a>
+      </li>
+    
+  </ul>
+
+          <div class="b-header_menu-top-ctl">
+            
+    <ul class="b-doc-language_selector-list">
+    
+      <li class="b-doc-language_selector-item">
+      
+        <a href="
+  
+    ../../../../en/doc/book/box/data_model.html
+  
+"
+           class="b-doc-language_selector-item-url"> En </a>
+      
+      </li>
+    
+      <li class="b-doc-language_selector-item">
+      
+        <a href="#" class="b-doc-language_selector-item-url p-active"> Ru </a>
+      
+      </li>
+    
+    </ul>
+
+            <button class="b-search-btn"> <i class="fa fa-search fa-2x"></i> </button>
+          </div>
+        </div>
+        <div class="b-header_menu-bottom">
+          <form role="search" class="b-header_menu-search" action="../../../search.html" method="get">
+            <input name="q" type="search" class="b-header_menu-search-text" placeholder="Search">
+            <input class="b-header_menu-search-but" type="submit" value="Search">
+          </form>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+      <!-- < HEADER -->
+
+      <div class="b-content b-clearbox">
+        
+  
+    <section class="b-block-lightgray b-documentation_top b-clearbox p-documentation_in">
+      <div class="b-block-wrapper">
+        <h2 class="b-section-title b-ellipsis toggle-navigation" title="3.1. Модель данных"> 3.1. Модель данных </h2>
+      </div>
+    </section>
+    
+      <div class="b-cols_content b-clearbox">
+        <div class="b-cols_content_left">
+          <div class="b-menu-toc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../whats_new.html">Что нового?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../whats_new.html#what-s-new-in-tarantool-1-7">Что нового в Tarantool 1.7?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Общие сведения</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../intro.html#an-application-server-together-with-a-database-manager">Сервер приложений + СУБД</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intro.html#database-features">Возможности СУБД</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Руководство пользователя</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro.html">1. Предисловие</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../intro.html#how-to-read-the-documentation">1.1. Как пользоваться документацией</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro.html#getting-in-touch-with-the-tarantool-community">1.2. Как связаться с сообществом разработчиков Tarantool&#8217;а</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide_getting_started.html">2. Начало работы</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide_getting_started.html#downloading-and-installing-a-binary-package">2.1. Скачивание и установка бинарного пакета</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide_getting_started.html#starting-tarantool-and-making-your-first-database">2.2. Первичный запуск Tarantool&#8217;а и создание базы данных</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide_getting_started.html#connecting-remotely">2.3. Установка удаленного соединения</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">3. Функционал СУБД</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.1. Модель данных</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#space">3.1.1. Пространство</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tuple">3.1.2. Tuple</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#index">3.1.3. Индекс</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-types">3.1.4. Типы данных</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#lua-vs-msgpack">3.1.4.1. Lua vs MsgPack</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#indexed-field-types">3.1.4.2. Indexed field types</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#persistence">3.1.5. Persistence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#operations">3.1.6. Операции</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#data-operations">3.1.6.1. Data operations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#index-operations">3.1.6.2. Операции с индексами</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#complexity-factors">3.1.6.3. Complexity factors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="atomic.html">3.2. Контроль транзакций</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="atomic.html#threads-fibers-and-yields">3.2.1. Threads, fibers and yields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic.html#cooperative-multitasking">3.2.2. Cooperative multitasking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic.html#transactions">3.2.3. Transactions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="atomic.html#implicit-yields">3.2.4. Implicit yields</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="authentication.html">3.3. Ограничение доступа</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#users">3.3.1. Users</a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#passwords">3.3.2. Passwords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#owners-and-privileges">3.3.3. Owners and privileges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#roles">3.3.4. Roles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="authentication.html#sessions-and-security">3.3.5. Sessions and security</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="triggers.html">3.4. Триггеры</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limitations.html">3.5. Ограничения</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../app_server.html">4. Сервер приложений</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#about-modules-rocks">4.1. Про модули/rocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#installing-an-existing-module">4.2. Установка существующего модуля</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#creating-a-new-lua-module-locally">4.3. Создание нового модуля на языке Lua</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#creating-a-new-c-c-module-locally">4.4. Создание нового модуля на языке C/C++</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#creating-a-mixed-lua-c-module-locally">4.5. Создание нового модуля на смеси языков Lua/C</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#tips-for-special-situations">4.6. Примечания для особых случаев</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#tips-on-lua-syntax">4.7. Tips on Lua syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../app_server.html#cookbook-recipes">4.8. Книга рецептов</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#hello-world-lua">4.8.1. hello_world.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#console-start-lua">4.8.2. console_start.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#fio-read-lua">4.8.3. fio_read.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#fio-write-lua">4.8.4. fio_write.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#ffi-printf-lua">4.8.5. ffi_printf.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#ffi-gettimeofday-lua">4.8.6. ffi_gettimeofday.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#ffi-zlib-lua">4.8.7. ffi_zlib.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#ffi-meta-lua">4.8.8. ffi_meta.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#print-arrays-lua">4.8.9. print_arrays.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#count-array-lua">4.8.10. count_array.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#count-array-with-nils-lua">4.8.11. count_array_with_nils.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#count-array-with-nulls-lua">4.8.12. count_array_with_nulls.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#count-map-lua">4.8.13. count_map.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#swap-lua">4.8.14. swap.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#uri-lua">4.8.15. uri.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#class-lua">4.8.16. class.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#garbage-lua">4.8.17. garbage.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#fiber-producer-and-consumer-lua">4.8.18. fiber_producer_and_consumer.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#socket-tcpconnect-lua">4.8.19. socket_tcpconnect.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#socket-tcp-echo-lua">4.8.20. socket_tcp_echo.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#getaddrinfo-lua">4.8.21. getaddrinfo.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#socket-udp-echo-lua">4.8.22. socket_udp_echo.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#http-get-lua">4.8.23. http_get.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#http-send-lua">4.8.24. http_send.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#http-server-lua">4.8.25. http_server.lua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../app_server.html#http-generate-html-lua">4.8.26. http_generate_html.lua</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../administration.html">5. Администрирование серверной части</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../administration.html#using-tarantool-as-a-client">5.1. Using Tarantool as a client</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#conventions-used-in-this-section">5.1.1. Условные обозначения, используемые в этом разделе</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#options-when-starting-client-from-the-command-line">5.1.2. Параметры запуска клиента из командной строки</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#tokens-requests-and-special-key-combinations">5.1.3. Токены, запросы и специальные комбинации клавиш</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#requests">5.1.4. Запросы</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../administration.html#utility-tarantoolctl">5.2. Утилита tarantoolctl</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#configuration-for-tarantoolctl">5.2.1. Конфигурирование tarantoolctl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#commands-for-tarantoolctl">5.2.2. Команды для tarantoolctl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#typical-code-snippets-for-tarantoolctl">5.2.3. Примеры кода для tarantoolctl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#a-detailed-example-for-tarantoolctl">5.2.4. Подробный пример для tarantoolctl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#an-example-for-tarantoolctl-connect">5.2.5. An example for tarantoolctl connect</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../administration.html#administrative-ports">5.3. Служебные порты</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration.html#administrative-requests">5.4. Служебные запросы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration.html#server-introspection">5.5. Просмотр состояния сервера</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration.html#backups">5.6. Резервное копирование</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#cold-backup">5.6.1. Cold backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#continuous-remote-backup">5.6.2. Continuous remote backup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#hot-backup">5.6.3. Hot backup</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../administration.html#updates-upgrades">5.7. Обновление сервера и базы данных</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#updating-tarantool-in-production">5.7.1. Обновление Tarantool&#8217;а в условиях эксплуатации</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#upgrading-a-tarantool-database">5.7.2. Upgrading a Tarantool database</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../administration.html#server-signal-handling">5.8. Обработка сигналов от сервера</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration.html#generating-a-core-file">5.9. Generating a core file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration.html#process-title">5.10. Название процесса</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../administration.html#system-specific-administration-notes">5.11. Заметки по администрированию для разных платформ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#debian-gnu-linux-and-ubuntu">5.11.1. Debian GNU/Linux and Ubuntu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#fedora-rhel-centos">5.11.2. Fedora, RHEL, CentOS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#freebsd">5.11.3. FreeBSD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#mac-os-x">5.11.4. Mac OS X</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../administration.html#notes-for-systemd-users">5.12. Заметки для пользователей systemd</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#instance-management">5.12.1. Управление экземплярами</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../administration.html#creating-instances">5.12.1.1. Создание экземпляров</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../administration.html#starting-instances">5.12.1.2. Запуск экземпляров</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../administration.html#monitoring-instances">5.12.1.3. Мониторинг экземпляров</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../administration.html#attaching-to-instances">5.12.1.4. Подсоединение к экземплярам</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../administration.html#checking-logs">5.12.1.5. Проверка журнала</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../administration.html#stopping-instances">5.12.1.6. Остановка экземпляров</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#daemon-supervision">5.12.2. Контроль за фоновыми программами</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#customizing-the-service-file">5.12.3. Правка настроек сервисного файла</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#debugging">5.12.4. Отладка</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#precautions">5.12.5. Особые указания</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#limitations">5.12.6. Ограничения</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../administration.html#sysvinit-systemd-conversion">5.12.7. sysvinit -&gt; systemd conversion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../replication/index.html">6. Репликация</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../replication/index.html#replication-architecture">6.1. Архитектура механизма репликации</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replication/index.html#setting-up-a-master">6.2. Setting up a master</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replication/index.html#setting-up-a-replica">6.3. Настройка сервера-реплики</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replication/index.html#recovering-from-a-degraded-state">6.4. Восстановление после сбоя</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replication/index.html#quick-startup-of-a-new-simple-two-server-cluster">6.5. Quick startup of a new simple two-server cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replication/index.html#monitoring-a-replica-s-actions">6.6. Мониторинг действий реплики</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replication/index.html#preventing-duplicate-actions">6.7. Предотвращение дублирующихся действий</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replication/index.html#master-master-replication">6.8. Репликация по схеме master-master</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replication/index.html#all-the-what-if-questions">6.9. Ответы на вопросы &#8220;Что если?&#8221;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../replication/index.html#hands-on-replication-tutorial">6.10. Практическое руководство по репликации</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../connectors/index.html">7. Коннекторы</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#protocol">7.1. Протокол</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#packet-example">7.2. Пример пакета данных</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#setting-up-the-server-for-connector-examples">7.3. Настройка окружения для примеров работы с коннекторами</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#java">7.4. Java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#go">7.5. Go</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#r">7.6. R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#erlang">7.7. Erlang</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#perl">7.8. Perl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#php">7.9. PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#python">7.10. Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#node-js">7.11. Node.js</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#c">7.12. C#</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#id1">7.13. C</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../connectors/index.html#example-1">7.13.1. Пример 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../connectors/index.html#example-2">7.13.2. Пример 2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../connectors/index.html#interpreting-function-return-values">7.14. Интерпретация возвращаемых значений</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../faq.html">8. Вопросы и ответы</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Справочники</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/reference_lua/index.html">1. Справочник по встроенной библиотеке</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/box.html">1.1. Модуль <cite>box</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="box_cfg.html">1.1.1. Submodule <cite>box.cfg</cite></a></li>
+<li class="toctree-l4"><a class="reference internal" href="box_index.html">1.1.2. Вложенный модуль <cite>box.index</cite></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="box_index.html#example-showing-use-of-the-box-functions">1.1.2.1. Example showing use of the box functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="box_index.html#example-showing-a-user-defined-iterator">1.1.2.2. Example showing a user-defined iterator</a></li>
+<li class="toctree-l5"><a class="reference internal" href="box_index.html#submodule-box-index-with-index-type-rtree-for-spatial-searches">1.1.2.3. Submodule <cite>box.index</cite> with index type = RTREE for spatial searches</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="box_info.html">1.1.3. Submodule <cite>box.info</cite></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/box_once.html">1.1.4. Функция <cite>box.once</cite></a></li>
+<li class="toctree-l4"><a class="reference internal" href="box_schema.html">1.1.5. Вложенный модуль <cite>box.schema</cite></a></li>
+<li class="toctree-l4"><a class="reference internal" href="box_session.html">1.1.6. Вложенный модуль <cite>box.session</cite></a></li>
+<li class="toctree-l4"><a class="reference internal" href="box_slab.html">1.1.7. Submodule <cite>box.slab</cite></a></li>
+<li class="toctree-l4"><a class="reference internal" href="box_space.html">1.1.8. Вложенный модуль <cite>box.space</cite></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="box_space.html#example-use-box-space-functions-to-read-space-tuples">1.1.8.1. Example: use box.space functions to read _space tuples</a></li>
+<li class="toctree-l5"><a class="reference internal" href="box_space.html#example-use-box-space-functions-to-organize-a-space-tuple">1.1.8.2. Example: use box.space functions to organize a _space tuple</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="box_stat.html">1.1.9. Submodule <cite>box.stat</cite></a></li>
+<li class="toctree-l4"><a class="reference internal" href="box_tuple.html">1.1.10. Вложенный модуль <cite>box.tuple</cite></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="box_tuple.html#example">1.1.10.1. Пример</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="box_txn_management.html">1.1.11. Functions for transaction management</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/clock.html">1.2. Модуль <cite>clock</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/console.html">1.3. Модуль <cite>console</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/crypto.html">1.4. Модуль <cite>crypto</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/crypto.html#incremental-methods-in-the-crypto-module">1.4.1. Incremental methods in the crypto module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/crypto.html#getting-the-same-results-from-digest-and-crypto-modules">1.4.2. Getting the same results from digest and crypto modules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/csv.html">1.5. Module <cite>csv</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/digest.html">1.6. Модуль <cite>digest</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/digest.html#incremental-methods-in-the-digest-module">1.6.1. Incremental methods in the digest module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/digest.html#example">1.6.2. Пример</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/errno.html">1.7. Module <cite>errno</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/box_error.html">1.8. Вложенный модуль <cite>box.error</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/fiber.html">1.9. Модуль <cite>fiber</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/fiber.html#example-of-fiber-use">1.9.1. Example Of Fiber Use</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/fiber_ipc.html">1.10. Модуль <cite>fiber-ipc</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/fiber_ipc.html#channel">1.10.1. Channel</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_lua/fiber_ipc.html#example">1.10.1.1. Пример</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/fiber_ipc.html#condition-variables">1.10.2. Condition variables</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_lua/fiber_ipc.html#id1">1.10.2.1. Пример</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/fio.html">1.11. Module <cite>fio</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/fio.html#common-pathname-manipulations">1.11.1. Common pathname manipulations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/fio.html#common-file-manipulations">1.11.2. Common file manipulations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/fun.html">1.12. Module <cite>fun</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/json.html">1.13. Module <cite>json</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/json.html#configuration-settings">1.13.1. Configuration settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/log.html">1.14. Module <cite>log</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/log.html#example">1.14.1. Пример</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/msgpack.html">1.15. Модуль <cite>msgpack</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/msgpack.html#example">1.15.1. Пример</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/net_box.html">1.16. Модуль <cite>net.box</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/net_box.html#example">1.16.1. Пример</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/pickle.html">1.17. Модуль <cite>pickle</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/socket.html">1.18. Модуль <cite>socket</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/socket.html#examples">1.18.1. Примеры:</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_lua/socket.html#use-of-a-tcp-socket-over-the-internet">1.18.1.1. Use of a TCP socket over the Internet</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_lua/socket.html#use-of-a-udp-socket-on-localhost">1.18.1.2. Use of a UDP socket on localhost</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_lua/socket.html#use-tcp-server-to-accept-file-contents-sent-with-socat">1.18.1.3. Use tcp_server to accept file contents sent with socat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/strict.html">1.19. Модуль <cite>strict</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/tap.html">1.20. Module <cite>tap</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/tap.html#example">1.20.1. Пример</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/tarantool.html">1.21. Модуль <cite>tarantool</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/uuid.html">1.22. Module <cite>uuid</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/uuid.html#example">1.22.1. Пример</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/xlog.html">1.23. Module <cite>xlog</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/yaml.html">1.24. Module <cite>yaml</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_lua/yaml.html#example">1.24.1. Пример</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/other.html">1.25. Разное</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/errcodes.html">1.26. Коды ошибок от базы данных</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_lua/errcodes.html#handling-errors">1.27. Handling errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/reference_rock/index.html">2. Справочник по сторонним библиотекам</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_rock/dbms.html">2.1. SQL DBMS Modules</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_rock/dbms.html#mysql-example">2.1.1. MySQL Example</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_rock/dbms.html#installation">2.1.1.1. Installation</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../reference/reference_rock/dbms.html#with-luarocks">2.1.1.1.1. With LuaRocks</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../reference/reference_rock/dbms.html#with-github">2.1.1.1.2. With GitHub</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_rock/dbms.html#connecting">2.1.1.2. Connecting</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_rock/dbms.html#how-to-ping">2.1.1.3. How to ping</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_rock/dbms.html#executing-a-statement">2.1.1.4. Executing a statement</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_rock/dbms.html#closing-connection">2.1.1.5. Closing connection</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_rock/dbms.html#example">2.1.1.6. Пример</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_rock/dbms.html#postgresql-example">2.1.2. PostgreSQL Example</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_rock/dbms.html#id1">2.1.2.1. Installation</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../reference/reference_rock/dbms.html#id2">2.1.2.1.1. With LuaRocks</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../reference/reference_rock/dbms.html#id3">2.1.2.1.2. With GitHub</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_rock/dbms.html#id4">2.1.2.2. Connecting</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_rock/dbms.html#id5">2.1.2.3. How to ping</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_rock/dbms.html#id6">2.1.2.4. Executing a statement</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_rock/dbms.html#id7">2.1.2.5. Closing connection</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/reference_rock/dbms.html#id8">2.1.2.6. Пример</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_rock/expirationd.html">2.2. Модуль <cite>expirationd</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_rock/shard.html">2.3. Модуль <cite>shard</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_rock/shard.html#example-shard-init-syntax-for-one-shard">2.3.1. Example: shard.init syntax for one shard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_rock/shard.html#example-shard-init-syntax-for-three-shards">2.3.2. Example: shard.init syntax for three shards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_rock/shard.html#example-shard-minimal-configuration">2.3.3. Example: Shard, Minimal Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_rock/shard.html#example-shard-scaling-out">2.3.4. Example: Shard, Scaling Out</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/reference_rock/tdb.html">2.4. Module <cite>tdb</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_rock/tdb.html#debugger-commands">2.4.1. Debugger Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/reference_rock/tdb.html#example-session">2.4.2. Example Session</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/configuration/index.html">3. Справочник по настройке</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/configuration/index.html#command-options">3.1. Опции комнандной строки</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/configuration/index.html#uri">3.2. Универсальный код ресурса (URI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/configuration/index.html#initialization-file">3.3. Файл инициализации</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/configuration/index.html#configuration-parameters">3.4. Параметры конфигурации</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/configuration/index.html#basic-parameters">3.4.1. Basic parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/configuration/index.html#configuring-the-storage">3.4.2. Configuring the storage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/configuration/index.html#snapshot-daemon">3.4.3. Snapshot daemon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/configuration/index.html#binary-logging-and-snapshots">3.4.4. Binary logging and snapshots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/configuration/index.html#hot-standby">3.4.5. Hot standby</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/configuration/index.html#replication">3.4.6. Репликация</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/configuration/index.html#networking">3.4.7. Networking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/configuration/index.html#logging">3.4.8. Logging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Практикум</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/lua_tutorials.html">1. Практические задания на Lua</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/lua_tutorials.html#insert-one-million-tuples-with-a-lua-stored-procedure">1.1. Вставка 1 млн кортежей с помощью хранимой процедуры на языке Lua</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/lua_tutorials.html#configure">1.1.1. Configure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/lua_tutorials.html#delimiter">1.1.2. Delimiter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/lua_tutorials.html#create-a-function-that-returns-a-string">1.1.3. Create a function that returns a string</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/lua_tutorials.html#create-a-function-that-calls-another-function-and-sets-a-variable">1.1.4. Create a function that calls another function and sets a variable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/lua_tutorials.html#modify-the-function-so-it-returns-a-one-letter-random-string">1.1.5. Modify the function so it returns a one-letter random string</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/lua_tutorials.html#modify-the-function-so-it-returns-a-ten-letter-random-string">1.1.6. Modify the function so it returns a ten-letter random string</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/lua_tutorials.html#make-a-tuple-out-of-a-number-and-a-string">1.1.7. Make a tuple out of a number and a string</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/lua_tutorials.html#modify-main-function-to-insert-a-tuple-into-the-database">1.1.8. Modify main_function to insert a tuple into the database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/lua_tutorials.html#modify-main-function-to-insert-a-million-tuples-into-the-database">1.1.9. Modify main_function to insert a million tuples into the database</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/lua_tutorials.html#sum-a-json-field-for-all-tuples">1.2. Подсчет суммы по JSON-полям во всех кортежах</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/lua_tutorials.html#indexed-pattern-search">1.3. Индексированный поиск по шаблонам</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/c_tutorial.html">2. Практическое задание на C</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/c_tutorial.html#c-stored-procedures">2.1. Хранимые процедуры на языке C</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev_guide/index.html">Contributor&#8217;s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/reference_capi/index.html">1. Справочник по C API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/box.html">1.1. Модуль <cite>box</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/clock.html">1.2. Модуль <cite>clock</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/coio.html">1.3. Модуль <cite>coio</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/error.html">1.4. Модуль <cite>error</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/fiber.html">1.5. Модуль <cite>fiber</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/box_index.html">1.6. Модуль <cite>index</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/latch.html">1.7. Модуль <cite>latch</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/utils.html">1.8. Модуль <cite>lua/utils</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/say.html">1.9. Модуль <cite>say</cite> (логирование)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/schema.html">1.10. Модуль <cite>schema</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/trivia.html">1.11. Модуль <cite>trivia/config</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/tuple.html">1.12. Модуль <cite>tuple</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/reference_capi/txn.html">1.13. Модуль <cite>txn</cite></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/internals_index.html">2. Internals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/internals_index.html#tarantool-s-binary-protocol">2.1. Tarantool&#8217;s binary protocol</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/internals_index.html#notation-in-diagrams">2.1.1. Notation in diagrams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/internals_index.html#greeting-packet">2.1.2. Greeting packet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/internals_index.html#unified-packet-structure">2.1.3. Unified packet structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/internals_index.html#authentication">2.1.4. Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/internals_index.html#requests">2.1.5. Запросы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/internals_index.html#response-packet-structure">2.1.6. Response packet structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/internals_index.html#replication-packet-structure">2.1.7. Replication packet structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/internals_index.html#xlog-snap">2.1.8. XLOG / SNAP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/internals_index.html#data-persistence-and-the-wal-file-format">2.2. Data persistence and the WAL file format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/internals_index.html#the-snapshot-file-format">2.3. The snapshot file format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/internals_index.html#the-recovery-process">2.4. The recovery process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/internals_index.html#server-startup-with-replication">2.5. Server startup with replication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/build_contribute_index.html">3. Build and contribute</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/building_from_source.html">3.1. Building from source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/building_documentation.html">3.2. Building documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/release_management.html">3.3. Release management</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/release_management.html#how-to-make-a-minor-release">3.3.1. How to make a minor release</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dev_guide/guidelines_index.html">4. Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/developer_guidelines.html">4.1. Developer guidelines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/developer_guidelines.html#how-to-work-on-a-bug">4.1.1. How to work on a bug</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/documentation_guidelines.html">4.2. Documentation guidelines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/documentation_guidelines.html#markup-issues">4.2.1. Markup issues</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/documentation_guidelines.html#wrapping-text">4.2.1.1. Wrapping text</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/documentation_guidelines.html#formatting-code-snippets">4.2.1.2. Formatting code snippets</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/documentation_guidelines.html#using-separated-links">4.2.1.3. Using separated links</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/documentation_guidelines.html#creating-labels-for-local-links">4.2.1.4. Creating labels for local links</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/documentation_guidelines.html#making-comments">4.2.1.5. Making comments</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/documentation_guidelines.html#language-and-style-issues">4.2.2. Language and style issues</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/documentation_guidelines.html#us-vs-british-spelling">4.2.2.1. US vs British spelling</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/documentation_guidelines.html#examples-and-templates">4.2.3. Examples and templates</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/documentation_guidelines.html#module-and-function">4.2.3.1. Module and function</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/documentation_guidelines.html#module-class-and-method">4.2.3.2. Module, class and method</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/c_style_guide.html">4.3. C Style Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/c_style_guide.html#general-guidelines">4.3.1. General guidelines</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#commenting-style">4.3.1.1. Commenting style</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#header-files">4.3.1.2. Header files</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#allocating-memory">4.3.1.3. Allocating memory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#other">4.3.1.4. Other</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/c_style_guide.html#linux-kernel-coding-style">4.3.2. Linux kernel coding style</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-1-indentation">4.3.2.1. Chapter 1: Indentation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-2-breaking-long-lines-and-strings">4.3.2.2. Chapter 2: Breaking long lines and strings</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-3-placing-braces-and-spaces">4.3.2.3. Chapter 3: Placing Braces and Spaces</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-3-1-spaces">4.3.2.4. Chapter 3.1:  Spaces</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-4-naming">4.3.2.5. Chapter 4: Naming</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-5-typedefs">4.3.2.6. Chapter 5: Typedefs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-6-functions">4.3.2.7. Chapter 6: Functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-7-centralized-exiting-of-functions">4.3.2.8. Chapter 7: Centralized exiting of functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-8-commenting">4.3.2.9. Chapter 8: Commenting</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-9-you-ve-made-a-mess-of-it">4.3.2.10. Chapter 9: You&#8217;ve made a mess of it</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-10-kconfig-configuration-files">4.3.2.11. Chapter 10: Kconfig configuration files</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-11-data-structures">4.3.2.12. Chapter 11: Data structures</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-12-macros-enums-and-rtl">4.3.2.13. Chapter 12: Macros, Enums and RTL</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-13-printing-kernel-messages">4.3.2.14. Chapter 13: Printing kernel messages</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-14-allocating-memory">4.3.2.15. Chapter 14: Allocating memory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-15-the-inline-disease">4.3.2.16. Chapter 15: The inline disease</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-16-function-return-values-and-names">4.3.2.17. Chapter 16: Function return values and names</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-17-don-t-re-invent-the-kernel-macros">4.3.2.18. Chapter 17:  Don&#8217;t re-invent the kernel macros</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#chapter-18-editor-modelines-and-other-cruft">4.3.2.19. Chapter 18:  Editor modelines and other cruft</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/c_style_guide.html#appendix-i-references">4.3.2.20. Appendix I: References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dev_guide/python_style_guide.html">4.4. Python Style Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/python_style_guide.html#introduction">4.4.1. Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/python_style_guide.html#a-foolish-consistency-is-the-hobgoblin-of-little-minds">4.4.2. A Foolish Consistency is the Hobgoblin of Little Minds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/python_style_guide.html#code-lay-out">4.4.3. Code lay-out</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#indentation">4.4.3.1. Indentation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#tabs-or-spaces">4.4.3.2. Tabs or Spaces?</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#maximum-line-length">4.4.3.3. Maximum Line Length</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#blank-lines">4.4.3.4. Blank Lines</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#encodings-pep-263">4.4.3.5. Encodings (PEP 263)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#imports">4.4.3.6. Imports</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/python_style_guide.html#whitespace-in-expressions-and-statements">4.4.4. Whitespace in Expressions and Statements</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#pet-peeves">4.4.4.1. Pet Peeves</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#other-recommendations">4.4.4.2. Other Recommendations</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/python_style_guide.html#comments">4.4.5. Comments</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#block-comments">4.4.5.1. Block Comments</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#inline-comments">4.4.5.2. Inline Comments</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#documentation-strings">4.4.5.3. Documentation Strings</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/python_style_guide.html#version-bookkeeping">4.4.6. Version Bookkeeping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/python_style_guide.html#naming-conventions">4.4.7. Naming Conventions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#descriptive-naming-styles">4.4.7.1. Descriptive: Naming Styles</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../dev_guide/python_style_guide.html#prescriptive-naming-conventions">4.4.7.2. Prescriptive: Naming Conventions</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../dev_guide/python_style_guide.html#names-to-avoid">4.4.7.2.1. Names to Avoid</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../dev_guide/python_style_guide.html#package-and-module-names">4.4.7.2.2. Package and Module Names</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../dev_guide/python_style_guide.html#class-names">4.4.7.2.3. Class Names</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../dev_guide/python_style_guide.html#exception-names">4.4.7.2.4. Exception Names</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../dev_guide/python_style_guide.html#global-variable-names">4.4.7.2.5. Global Variable Names</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../dev_guide/python_style_guide.html#function-names">4.4.7.2.6. Function Names</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../dev_guide/python_style_guide.html#function-and-method-arguments">4.4.7.2.7. Function and method arguments</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../dev_guide/python_style_guide.html#method-names-and-instance-variables">4.4.7.2.8. Method Names and Instance Variables</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../dev_guide/python_style_guide.html#constants">4.4.7.2.9. Constants</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../dev_guide/python_style_guide.html#designing-for-inheritance">4.4.7.2.10. Designing for inheritance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/python_style_guide.html#references">4.4.8. References</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dev_guide/python_style_guide.html#copyright">4.4.9. Copyright</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+        <div class="b-cols_content_right">
+          <div class="b-cols_content_right-slot">
+  <div class="b-page_header">
+    <ul class="b-path-list">
+      <li class="b-path-list-item">
+        <a href="../../index.html"
+           class="b-path-list-item-url">
+          Documentation
+        </a>
+      </li>
+      
+        <li class="b-path-list-item">
+          <a href="../index.html"
+             class="b-path-list-item-url b-ellipsis">
+            Руководство пользователя
+          </a>
+        </li>
+      
+        <li class="b-path-list-item">
+          <a href="index.html"
+             class="b-path-list-item-url b-ellipsis">
+            3. Функционал СУБД
+          </a>
+        </li>
+      
+      
+      <li class="b-path-list-item">
+        <div title="3.1. Модель данных" class="b-path_current b-ellipsis">
+          3.1. Модель данных
+        </div>
+      </li>
+      
+    </ul>
+  </div>
+
+  <article class="b-article">
+    
+    
+      <div class="admonition note">
+        <p class="first admonition-title">Замечание</p>
+        <p class="last">
+          Документация находится в процессе перевода и может
+          отставать от Английской версии
+        </p>
+      </div>
+    
+    <div class="section" id="data-model">
+<span id="box-data-model"></span><h1>3.1. Модель данных<a class="headerlink" href="#data-model" title="Ссылка на этот заголовок">¶</a></h1>
+<p>В этом разделе описывается то, как в Tarantool&#8217;е организовано хранение данных и какие операции с данным он поддерживает.</p>
+<p>If you tried out the
+<a class="reference internal" href="../user_guide_getting_started.html#user-guide-getting-started-first-database"><span class="std std-ref">Starting Tarantool and making your first database</span></a>
+exercise from &#8220;Getting Started&#8221;, then your database looks like this:</p>
+<img alt="../../../_images/data_model.svg" src="../../../_images/data_model.svg" /><div class="section" id="space">
+<span id="index-box-space"></span><h2>3.1.1. Пространство<a class="headerlink" href="#space" title="Ссылка на этот заголовок">¶</a></h2>
+<p>A <strong>space</strong> &#8211; &#8216;tester&#8217; in our example &#8211; is a container.</p>
+<p>When Tarantool is being used to store data, there is always at least one space.
+Each space has a unique <strong>name</strong> specified by the user.
+Besides, each space has a unique <strong>numeric identifier</strong> which can be specified by
+the user, but usually is assigned automatically by Tarantool.
+Finally, a space always has an <strong>engine</strong>: <em>memtx</em> (default) &#8211; in-memory engine,
+fast but limited in size, or <em>vinyl</em> &#8211; on-disk engine for huge data sets.</p>
+<p>A space is a container for <a class="reference internal" href="#index-box-tuple"><span class="std std-ref">tuples</span></a>.
+To be functional, it needs to have a <a class="reference internal" href="#index-box-index"><span class="std std-ref">primary index</span></a>.
+It can also have secondary indexes.</p>
+</div>
+<div class="section" id="tuple">
+<span id="index-box-tuple"></span><h2>3.1.2. Tuple<a class="headerlink" href="#tuple" title="Ссылка на этот заголовок">¶</a></h2>
+<p>A <strong>tuple</strong> plays the same role as a “row” or a “record”, and the components of
+a tuple (which we call “fields”) play the same role as a “row column” or
+“record field”, except that:</p>
+<ul class="simple">
+<li>fields can be composite structures, such as arrays or maps, and</li>
+<li>fields don&#8217;t need to have names.</li>
+</ul>
+<p>Any given tuple may have any number of fields, and the fields may be of
+different <a class="reference internal" href="#index-box-data-types"><span class="std std-ref">types</span></a>.
+The identifier of a field is the field&#8217;s number, base 1
+(in Lua and other 1-based languages) or base 0 (in PHP or C/C++).
+For example, “1” or &#8220;0&#8221; can be used in some contexts to refer to the first
+field of a tuple.</p>
+<p>Tuples in Tarantool are stored as
+<a class="reference external" href="https://en.wikipedia.org/wiki/MessagePack">MsgPack</a> arrays.</p>
+<p>When Tarantool returns a tuple value in console, it uses the
+<a class="reference external" href="https://en.wikipedia.org/wiki/YAML">YAML</a> format,
+for example: <code class="docutils literal"><span class="pre">[3,</span> <span class="pre">'Ace</span> <span class="pre">of</span> <span class="pre">Base',</span> <span class="pre">1993]</span></code>.</p>
+</div>
+<div class="section" id="index">
+<span id="index-box-index"></span><h2>3.1.3. Индекс<a class="headerlink" href="#index" title="Ссылка на этот заголовок">¶</a></h2>
+<p>An <strong>index</strong> is a group of key values and pointers.</p>
+<p>As with spaces, you should specify the index <strong>name</strong>, and let Tarantool
+come up with a unique <strong>numeric identifier</strong> (&#8220;index id&#8221;).</p>
+<p>An index always has a <strong>type</strong>. The default index type is &#8216;TREE&#8217;.
+TREE indexes are provided by all Tarantool engines, can index unique and
+non-unique values, support partial key searches, comparisons and ordered results.
+Additionally, memtx engine supports HASH, RTREE and BITSET indexes.</p>
+<p>An index may be <strong>multi-part</strong>, that is, you can declare that an index key value
+is composed of two or more fields in the tuple, in any order.
+For example, for an ordinary TREE index, the maximum number of parts is 255.</p>
+<p>An index may be <strong>unique</strong>, that is, you can declare that it would be illegal
+to have the same key value twice.</p>
+<p>The first index defined on a space is called the <strong>primary key index</strong>,
+and it must be unique. All other indexes are called <strong>secondary indexes</strong>,
+and they may be non-unique.</p>
+<p>An index definition may include identifiers of tuple fields and their expected
+<strong>types</strong> (see allowed <a class="reference internal" href="#index-box-indexed-field-types"><span class="std std-ref">indexed field types</span></a>
+below).</p>
+<p>In our example, we first defined the primary index (named &#8216;primary&#8217;) based on
+field #1 of each tuple:</p>
+<div class="highlight-tarantoolsession"><div class="highlight"><pre><span></span><span class="gp">tarantool&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="n">s</span><span class="p">:</span><span class="n">create_index</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">primary&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">hash&#39;</span><span class="p">,</span> <span class="n">parts</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">unsigned&#39;</span><span class="p">}})</span>
+</pre></div>
+</div>
+<p>The effect is that, for all tuples in space &#8216;tester&#8217;, field #1 must exist and
+must contain an unsigned integer.
+The index type is &#8216;hash&#8217;, so values in field #1 must be unique, because keys
+in HASH indexes are unique.</p>
+<p>After that, we defined a secondary index (named &#8216;secondary&#8217;) based on field #2
+of each tuple:</p>
+<div class="highlight-tarantoolsession"><div class="highlight"><pre><span></span><span class="gp">tarantool&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="n">s</span><span class="p">:</span><span class="n">create_index</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">secondary&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">tree&#39;</span><span class="p">,</span> <span class="n">parts</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">string&#39;</span><span class="p">}})</span>
+</pre></div>
+</div>
+<p>The effect is that, for all tuples in space &#8216;tester&#8217;, field #2 must exist and
+must contain a string.
+The index type is &#8216;tree&#8217;, so values in field #2 must not be unique, because keys
+in TREE indexes may be non-unique.</p>
+<div class="admonition note">
+<p class="first admonition-title">Примечание</p>
+<p>Space definitions and index definitions are stored permanently in Tarantool&#8217;s
+system spaces <a class="reference internal" href="box_space.html#box-space-space"><span class="std std-ref">_space</span></a> and <a class="reference internal" href="box_space.html#box-space-index"><span class="std std-ref">_index</span></a>
+(for details, see reference on <a class="reference internal" href="box_space.html#box-space"><span class="std std-ref">box.space</span></a> submodule).</p>
+<p class="last">You can add, drop, or alter the definitions at runtime, with some restrictions.
+See syntax details in reference on <a class="reference internal" href="../../reference/reference_lua/box.html#index-box-library"><span class="std std-ref">box</span></a> module.</p>
+</div>
+</div>
+<div class="section" id="data-types">
+<span id="index-box-data-types"></span><h2>3.1.4. Типы данных<a class="headerlink" href="#data-types" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Tarantool is both a database and an application server.
+Hence a developer often deals with two type sets:
+the programming language types (e.g. Lua) and
+the types of the Tarantool storage format (MsgPack).</p>
+<div class="section" id="lua-vs-msgpack">
+<span id="index-box-lua-vs-msgpack"></span><h3>3.1.4.1. Lua vs MsgPack<a class="headerlink" href="#lua-vs-msgpack" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="table container">
+<table border="1" class="right-align-column-1 left-align-column-2 left-align-column-3 left-align-column-4 docutils">
+<colgroup>
+<col width="19%" />
+<col width="22%" />
+<col width="32%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Scalar / compound</th>
+<th class="head">MsgPack &nbsp; type</th>
+<th class="head">Lua type</th>
+<th class="head">Example value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>scalar</td>
+<td>nil</td>
+<td>&#8220;<a class="reference external" href="http://www.lua.org/pil/2.1.html">nil</a>&#8220;</td>
+<td>msgpack.NULL</td>
+</tr>
+<tr class="row-odd"><td>scalar</td>
+<td>boolean</td>
+<td>&#8220;<a class="reference external" href="http://www.lua.org/pil/2.2.html">boolean</a>&#8220;</td>
+<td>true</td>
+</tr>
+<tr class="row-even"><td>scalar</td>
+<td>string</td>
+<td>&#8220;<a class="reference external" href="http://www.lua.org/pil/2.4.html">string</a>&#8220;</td>
+<td>&#8216;A B C&#8217;</td>
+</tr>
+<tr class="row-odd"><td>scalar</td>
+<td>integer</td>
+<td>&#8220;<a class="reference external" href="http://www.lua.org/pil/2.3.html">number</a>&#8220;</td>
+<td>12345</td>
+</tr>
+<tr class="row-even"><td>scalar</td>
+<td>double</td>
+<td>&#8220;<a class="reference external" href="http://www.lua.org/pil/2.3.html">number</a>&#8220;</td>
+<td>1,2345</td>
+</tr>
+<tr class="row-odd"><td>compound</td>
+<td>map</td>
+<td>&#8220;<a class="reference external" href="http://www.lua.org/pil/2.5.html">table</a>&#8221; (with string keys)</td>
+<td>table: 0x410f8b10</td>
+</tr>
+<tr class="row-even"><td>compound</td>
+<td>array</td>
+<td>&#8220;<a class="reference external" href="http://www.lua.org/pil/2.5.html">table</a>&#8221; (with integer keys)</td>
+<td>[1, 2, 3, 4, 5]</td>
+</tr>
+<tr class="row-odd"><td>compound</td>
+<td>array</td>
+<td>tuple (&#8220;<a class="reference external" href="http://luajit.org/ext_ffi.html#call">cdata</a>&#8221;)</td>
+<td>[12345, &#8216;A B C&#8217;]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In Lua, a <strong>nil</strong> type has only one possible value, also called <em>nil</em>
+(displayed as <strong>null</strong> on Tarantool&#8217;s command line, since the output is in the
+YAML format).
+Nils may be compared to values of any types with == (is-equal)
+or ~= (is-not-equal), but other operations will not work.
+Nils may not be used in Lua tables; the workaround is to use
+<a class="reference external" href="https://tarantool.org/doc/reference/reference_lua/msgpack.html#msgpack-null">msgpack.NULL</a>.</p>
+<p>A <strong>boolean</strong> is either <code class="docutils literal"><span class="pre">true</span></code> or <code class="docutils literal"><span class="pre">false</span></code>.</p>
+<p>A <strong>string</strong> is a variable-length sequence of bytes, usually represented with
+alphanumeric characters inside single quotes. In both Lua and MsgPack, strings
+are treated as binary data, with no attempts to determine a string&#8217;s
+character set or to perform any string conversion.
+So, string sorting and comparison are done byte-by-byte, without any special
+collation rules applied.
+(Example: numbers are ordered by their point on the number line, so 2345 is
+greater than 500; meanwhile, strings are ordered by the encoding of the first
+byte, then the encoding of the second byte, and so on, so &#8216;2345&#8217; is less than &#8216;500&#8217;.)</p>
+<p>In Lua, a <strong>number</strong> is double-precision floating-point, but Tarantool allows both
+integer and floating-point values. Tarantool will try to store a Lua number as
+floating-point if the value contains a decimal point or is very large
+(greater than 100 billion = 1e14), otherwise Tarantool will store it as an integer.
+To ensure that even very large numbers are stored as integers, use the
+<a class="reference internal" href="../../reference/reference_lua/other.html#other-tonumber64"><span class="std std-ref">tonumber64</span></a> function, or the LL (Long Long) suffix,
+or the ULL (Unsigned Long Long) suffix.
+Here are examples of numbers using regular notation, exponential notation,
+the ULL suffix and the <code class="docutils literal"><span class="pre">tonumber64</span></code> function:
+<code class="docutils literal"><span class="pre">-55</span></code>, <code class="docutils literal"><span class="pre">-2.7e+20</span></code>, <code class="docutils literal"><span class="pre">100000000000000ULL</span></code>, <code class="docutils literal"><span class="pre">tonumber64('18446744073709551615')</span></code>.</p>
+<p>Lua <strong>tables</strong> with string keys are stored as MsgPack maps;
+Lua tables with integer keys starting with 1 &#8211; as MsgPack arrays.
+Nils may not be used in Lua tables; the workaround is to use
+<a class="reference external" href="https://tarantool.org/doc/reference/reference_lua/msgpack.html#msgpack-null">msgpack.NULL</a>.</p>
+<p>A <strong>tuple</strong> is a light reference to a MsgPack array stored in the database.
+It is a special type (cdata) to avoid conversion to a Lua table on retrieval.
+A few functions may return tables with multiple tuples. For more tuple examples,
+see <a class="reference internal" href="box_tuple.html#box-tuple"><span class="std std-ref">box.tuple</span></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Примечание</p>
+<p class="last">Tarantool uses the MsgPack format for database storage, which is variable-length.
+So, for example, the smallest number requires only one byte, but the largest number
+requires nine bytes.</p>
+</div>
+</div>
+<div class="section" id="indexed-field-types">
+<span id="index-box-indexed-field-types"></span><h3>3.1.4.2. Indexed field types<a class="headerlink" href="#indexed-field-types" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Indexes restrict values which Tarantool&#8217;s MsgPack may contain. This is why,
+for example, &#8216;unsigned&#8217; is a separate <strong>indexed field type</strong>, compared to ‘integer’
+data type in MsgPack: they both store ‘integer’ values, but an &#8216;unsigned&#8217; index
+contains only <em>non-negative</em> integer values and an ‘integer’ index contains <em>all</em>
+integer values.</p>
+<p>Here&#8217;s how Tarantool indexed field types correspond to MsgPack data types.</p>
+<div class="table container">
+<table border="1" class="left-align-column-1 left-align-column-2 left-align-column-3 left-align-column-4 top-align-column-1 docutils">
+<colgroup>
+<col width="27%" />
+<col width="33%" />
+<col width="21%" />
+<col width="19%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Indexed field type</th>
+<th class="head">MsgPack data type <br />
+(and possible values)</th>
+<th class="head"><p class="first last">Тип индекса</p>
+</th>
+<th class="head"><p class="first last">Примеры:</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>unsigned</strong>
+(may also be called ‘uint’
+or ‘num’, but ‘num’ is
+deprecated)</td>
+<td><strong>integer</strong>
+(integer between 0 and
+18446744073709551615, i.e.
+about 18 quintillion)</td>
+<td>TREE, BITSET or HASH</td>
+<td>123456</td>
+</tr>
+<tr class="row-odd"><td><strong>integer</strong>
+(may also be called ‘int’)</td>
+<td><strong>integer</strong>
+(integer between
+-9223372036854775808 and
+18446744073709551615)</td>
+<td>TREE or HASH</td>
+<td>-2^63</td>
+</tr>
+<tr class="row-even"><td><strong>number</strong></td>
+<td><p class="first"><strong>integer</strong>
+(integer between
+-9223372036854775808 and
+18446744073709551615)</p>
+<p class="last"><strong>double</strong>
+(single-precision floating
+point number or double-precision
+floating point number)</p>
+</td>
+<td>TREE or HASH</td>
+<td><p class="first">1.234</p>
+<p>-44</p>
+<p class="last">1.447e+44</p>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>string</strong>
+(may also be called ‘str’)</td>
+<td><strong>string</strong>
+(any set of octets,
+up to the maximum length)</td>
+<td>TREE or HASH</td>
+<td><p class="first">‘A B C’</p>
+<p class="last">‘65 66 67’</p>
+</td>
+</tr>
+<tr class="row-even"><td><strong>array</strong></td>
+<td><strong>array</strong>
+(arrays of integers between
+-9223372036854775808 and
+9223372036854775807)</td>
+<td>RTREE</td>
+<td><p class="first">{10, 11}</p>
+<p class="last">{3, 5, 9, 10}</p>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>scalar</strong></td>
+<td><p class="first"><strong>boolean</strong>
+(true or false)</p>
+<p><strong>integer</strong>
+(integer between
+-9223372036854775808 and
+18446744073709551615)</p>
+<p><strong>double</strong>
+(single-precision floating
+point number or double-precision
+floating point number)</p>
+<p class="last">Note:
+When there is a mix of types,
+the key order is: booleans,
+then numbers, then strings.</p>
+</td>
+<td>TREE or HASH</td>
+<td><p class="first">true</p>
+<p>-1</p>
+<p>1.234</p>
+<p>‘’</p>
+<p class="last">‘ру’</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="persistence">
+<h2>3.1.5. Persistence<a class="headerlink" href="#persistence" title="Ссылка на этот заголовок">¶</a></h2>
+<p>In Tarantool, updates to the database are recorded in the so-called
+<strong>write ahead log (WAL)</strong> files. This ensures data persistence.
+When a power outage occurs or the server is killed incidentally,
+the in-memory database is lost. In this situation, WAL files are used
+to restore the data. Namely, Tarantool reads the WAL files and redoes
+the requests (this is called the &#8220;recovery process&#8221;). You can change
+the timing of the WAL writer, or turn it off, by setting
+<a class="reference internal" href="../../reference/configuration/index.html#cfg-binary-logging-snapshots-wal-mode"><span class="std std-ref">wal_mode</span></a>.</p>
+<p>Tarantool also maintains a set of <strong>checkpoint files</strong>. These files contain
+an on-disk copy of the entire data set for a given moment. Instead of reading
+every WAL file since the databases were created, the recovery process can load
+the latest checkpoint file and then read only those WAL files that were produced
+after the checkpoint file was made. After checkpointing, old WAL files can be
+removed to free up space.</p>
+<p>To force immediate creation of a checkpoint, you can use Tarantool&#8217;s
+<a class="reference internal" href="../administration.html#admin-snapshot"><span class="std std-ref">box.snapshot()</span></a> request. To enable automatic creation
+of checkpoint files, you can use Tarantool&#8217;s
+<a class="reference internal" href="../../reference/configuration/index.html#book-cfg-snapshot-daemon"><span class="std std-ref">snapshot daemon</span></a>. The snapshot
+daemon sets intervals for forced checkpoints. It makes sure that the states
+of both memtx and vinyl storage engines are synchronized and saved to disk,
+and automatically removes old WAL files.</p>
+<p>Checkpoint files can be created even if there is no WAL file.</p>
+<div class="admonition note">
+<p class="first admonition-title">Примечание</p>
+<div class="last line-block">
+<div class="line">The memtx engine makes only forced checkpoints.</div>
+<div class="line">The vinyl engine runs checkpointing in background at all times.</div>
+</div>
+</div>
+<p>See the <a class="reference internal" href="../../dev_guide/internals_index.html#internals-data-persistence"><span class="std std-ref">Internals</span></a> section for more details
+about the WAL writer and the recovery process.</p>
+</div>
+<div class="section" id="operations">
+<h2>3.1.6. Операции<a class="headerlink" href="#operations" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="data-operations">
+<span id="index-box-data-operations"></span><h3>3.1.6.1. Data operations<a class="headerlink" href="#data-operations" title="Ссылка на этот заголовок">¶</a></h3>
+<p>The basic data operations supported in Tarantool are:</p>
+<ul class="simple">
+<li>one data-retrieval operation (SELECT), and</li>
+<li>five data-manipulation operations (INSERT, UPDATE, UPSERT, DELETE, REPLACE).</li>
+</ul>
+<p>All of them are implemented as functions in <a class="reference internal" href="box_space.html#box-space"><span class="std std-ref">box.space</span></a> submodule.</p>
+<p><strong>Examples</strong></p>
+<ul>
+<li><p class="first">INSERT: Add a new tuple to space &#8216;tester&#8217;.</p>
+<p>The first field, field[1], will be 999 (MsgPack type is <cite>integer</cite>).</p>
+<p>The second field, field[2], will be &#8216;Taranto&#8217; (MsgPack type is <cite>string</cite>).</p>
+<div class="highlight-tarantoolsession"><div class="highlight"><pre><span></span><span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">tester</span><span class="p">:</span><span class="n">insert</span><span class="p">{</span><span class="mi">999</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">Taranto&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">UPDATE: Update the tuple, changing field field[2].</p>
+<p>The clause &#8220;{999}&#8221;, which has the value to look up in the index of the tuple&#8217;s
+primary-key field, is mandatory, because <code class="docutils literal"><span class="pre">update()</span></code> requests must always have
+a clause that specifies a unique key, which in this case is field[1].</p>
+<p>The clause &#8220;{{&#8216;=&#8217;, 2, &#8216;Tarantino&#8217;}}&#8221; specifies that assignment will happen to
+field[2] with the new value.</p>
+<div class="highlight-tarantoolsession"><div class="highlight"><pre><span></span><span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">tester</span><span class="p">:</span><span class="n">update</span><span class="p">({</span><span class="mi">999</span><span class="p">},</span> <span class="p">{{</span><span class="s1">&#39;</span><span class="s">=&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">Tarantino&#39;</span><span class="p">}})</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">UPSERT: Upsert the tuple, changing field field[2] again.</p>
+<p>The syntax of <code class="docutils literal"><span class="pre">upsert()</span></code> is similar to the syntax of <code class="docutils literal"><span class="pre">update()</span></code>. However,
+the execution logic of these two requests is different.
+UPSERT is either UPDATE or INSERT, depending on the database&#8217;s state.
+Also, UPSERT execution is postponed after transaction commit, so, unlike
+<code class="docutils literal"><span class="pre">update()</span></code>, <code class="docutils literal"><span class="pre">upsert()</span></code> doesn&#8217;t return data back.</p>
+<div class="highlight-tarantoolsession"><div class="highlight"><pre><span></span><span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">tester</span><span class="p">:</span><span class="n">upsert</span><span class="p">({</span><span class="mi">999</span><span class="p">},</span> <span class="p">{{</span><span class="s1">&#39;</span><span class="s">=&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">Tarantism&#39;</span><span class="p">}})</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">REPLACE: Replace the tuple, adding a new field.</p>
+<p>This is also possible with the <code class="docutils literal"><span class="pre">update()</span></code> request, but the <code class="docutils literal"><span class="pre">update()</span></code>
+request is usually more complicated.</p>
+<div class="highlight-tarantoolsession"><div class="highlight"><pre><span></span><span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">tester</span><span class="p">:</span><span class="n">replace</span><span class="p">{</span><span class="mi">999</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">Tarantella&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">Tarantula&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">SELECT: Retrieve the tuple.</p>
+<p>The clause &#8220;{999}&#8221; is still mandatory, although it does not have to mention the primary key.</p>
+<div class="highlight-tarantoolsession"><div class="highlight"><pre><span></span><span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">tester</span><span class="p">:</span><span class="nb">select</span><span class="p">{</span><span class="mi">999</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">DELETE: Delete the tuple.</p>
+<p>In this example, we identify the primary-key field.</p>
+<div class="highlight-tarantoolsession"><div class="highlight"><pre><span></span><span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">tester</span><span class="p">:</span><span class="n">delete</span><span class="p">{</span><span class="mi">999</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>All the functions operate on tuples and accept only unique key values. So,
+the number of tuples in the space is always 0 or 1, since the keys are unique.</p>
+<p>Functions <code class="docutils literal"><span class="pre">insert()</span></code>, <code class="docutils literal"><span class="pre">upsert()</span></code> and <code class="docutils literal"><span class="pre">replace()</span></code> accept only primary-key values.
+Functions <code class="docutils literal"><span class="pre">select()</span></code>, <code class="docutils literal"><span class="pre">delete()</span></code> and <code class="docutils literal"><span class="pre">update()</span></code> may accept either a primary-key
+value or a secondary-key value.</p>
+<div class="admonition note">
+<p class="first admonition-title">Примечание</p>
+<p class="last">Besides Lua, you can use
+<a class="reference internal" href="../connectors/index.html#index-box-connectors"><span class="std std-ref">Perl, PHP, Python or other programming language connectors</span></a>.
+The client server protocol is open and documented.
+See this <a class="reference internal" href="../../dev_guide/internals_index.html#box-protocol-iproto-protocol"><span class="std std-ref">annotated BNF</span></a>.</p>
+</div>
+</div>
+<div class="section" id="index-operations">
+<h3>3.1.6.2. Операции с индексами<a class="headerlink" href="#index-operations" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Index operations are automatic: if a data-manipulation request changes a tuple,
+then it also changes the index keys defined for the tuple.</p>
+<p>The simple index-creation operation that we&#8217;ve illustrated before is:</p>
+<div class="highlight highlight-default"><div class="highlight"><pre><span></span>:samp:`box.space.{имя-пространства}:create_index(&#39;{имя-индекса}&#39;)`
+</pre></div>
+</div>
+<p>This creates a unique TREE index on the first field of all tuples
+(often called &#8220;Field#1&#8221;), which is assumed to be numeric.</p>
+<p>The simple SELECT request that we&#8217;ve illustrated before is:</p>
+<div class="highlight highlight-default"><div class="highlight"><pre><span></span>:extsamp:`box.space.{*{имя-пространства}*}:select({*{значение}*})`
+</pre></div>
+</div>
+<p>This looks for a single tuple via the first index. Since the first index
+is always unique, the maximum number of returned tuples will be: one.</p>
+<p>The following SELECT variations exist:</p>
+<ol class="arabic">
+<li><p class="first">Помимо условия равенства, при поиске могут использоваться и другие условия сравнения.</p>
+<pre class="highlight literal-block">
+<code class="extsamp docutils literal"><span class="pre">box.space.</span><em><span class="pre">space-name</span></em><span class="pre">:select(value,</span> <span class="pre">{iterator</span> <span class="pre">=</span> <span class="pre">'GT'})</span></code>
+</pre>
+<p>The comparison operators are LT, LE, EQ, REQ, GE, GT
+(for &#8220;less than&#8221;, &#8220;less than or equal&#8221;, &#8220;equal&#8221;, &#8220;reversed equal&#8221;,
+&#8220;greater than or equal&#8221;, &#8220;greater than&#8221; respectively).
+Comparisons make sense if and only if the index type is ‘TREE&#8217;.</p>
+<p>Этот вариант поиска может вернуть более одного кортежа. В таком случае кортежи будут отсортированы в порядке убывания по ключу (если использовался оператор LT, LE или REQ), либо в порядке возрастания (во всех остальных случаях).</p>
+</li>
+<li><p class="first">Поиск может производиться по вторичному индексу.</p>
+<pre class="highlight literal-block">
+<code class="extsamp docutils literal"><span class="pre">box.space.</span><em><span class="pre">space-name</span></em><span class="pre">.index.</span><em><span class="pre">index-name</span></em><span class="pre">:select(value)</span></code>
+</pre>
+<p>При поиске по первичному индексу имя индекса можно не указывать. При поиске же по вторичному индексу имя индекса указывать необходимо.</p>
+</li>
+<li><p class="first">Поиск может производиться как по всему ключу, так и по его частям.</p>
+<pre class="highlight literal-block">
+-- Suppose an index has two parts
+<code class="samp docutils literal"><span class="pre">tarantool&gt;</span> <span class="pre">box.space.</span><em><span class="pre">space-name</span></em><span class="pre">.index.</span><em><span class="pre">index-name</span></em><span class="pre">.parts</span></code>
+---
+- - type: unsigned
+    fieldno: 1
+  - type: string
+    fieldno: 2
+...
+-- Suppose the space has three tuples
+<code class="samp docutils literal"><span class="pre">box.space.</span><em><span class="pre">space-name</span></em><span class="pre">:select()</span></code>
+---
+- - [1, 'A']
+  - [1, 'B']
+  - [2, '']
+...
+</pre>
+</li>
+<li><p class="first">The search may be for all fields, using a table for the value:</p>
+<pre class="highlight literal-block">
+<code class="extsamp docutils literal"><span class="pre">box.space.</span><em><span class="pre">space-name</span></em><span class="pre">:select({1,</span> <span class="pre">'A'})</span></code>
+</pre>
+<p>Либо же по одному полю (в этом случае используется таблица или скалярное значение):</p>
+<pre class="highlight literal-block">
+<code class="samp docutils literal"><span class="pre">box.space.</span><em><span class="pre">space-name</span></em><span class="pre">:select(1)</span></code>
+</pre>
+<p>In the second case, the result will be two tuples:
+<code class="docutils literal"><span class="pre">{1,</span> <span class="pre">'A'}</span></code> and <code class="docutils literal"><span class="pre">{1,</span> <span class="pre">'B'}</span></code>.</p>
+<p>You can specify even zero fields, causing all three tuples to be
+returned. (Notice that partial key searches are available only in TREE indexes.)</p>
+</li>
+</ol>
+<p><strong>Examples</strong></p>
+<ul>
+<li><p class="first">Пример работы с BITSET-индексом:</p>
+<blockquote>
+<div><div class="highlight-tarantoolsession"><div class="highlight"><pre><span></span><span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">schema</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">bitset_example&#39;</span><span class="p">)</span>
+<span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">bitset_example</span><span class="p">:</span><span class="n">create_index</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">primary&#39;</span><span class="p">)</span>
+<span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">bitset_example</span><span class="p">:</span><span class="n">create_index</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">bitset&#39;</span><span class="p">,{</span><span class="n">unique</span><span class="o">=</span><span class="kc">false</span><span class="p">,</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;</span><span class="s">BITSET&#39;</span><span class="p">,</span> <span class="n">parts</span><span class="o">=</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;</span><span class="s">unsigned&#39;</span><span class="p">}})</span>
+<span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">bitset_example</span><span class="p">:</span><span class="n">insert</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
+<span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">bitset_example</span><span class="p">:</span><span class="n">insert</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span>
+<span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">bitset_example</span><span class="p">:</span><span class="n">insert</span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">}</span>
+<span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">bitset_example</span><span class="p">:</span><span class="n">insert</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span>
+<span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">bitset_example</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="n">bitset</span><span class="p">:</span><span class="nb">select</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="n">iterator</span><span class="o">=</span><span class="s1">&#39;</span><span class="s">BITS_ANY_SET&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Мы получим следующий результат:</p>
+<div class="highlight-tarantoolsession"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="p p-Indicator">-</span> <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="nv">3</span><span class="p p-Indicator">,</span> <span class="nv">7</span><span class="p p-Indicator">]</span>
+  <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="nv">4</span><span class="p p-Indicator">,</span> <span class="nv">3</span><span class="p p-Indicator">]</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>поскольку (7 AND 2) не равно 0 и (3 AND 2) не равно 0.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Пример работы с RTREE-индексом:</p>
+<blockquote>
+<div><div class="highlight-tarantoolsession"><div class="highlight"><pre><span></span><span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">schema</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">rtree_example&#39;</span><span class="p">)</span>
+<span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">rtree_example</span><span class="p">:</span><span class="n">create_index</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">primary&#39;</span><span class="p">)</span>
+<span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">rtree_example</span><span class="p">:</span><span class="n">create_index</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">rtree&#39;</span><span class="p">,{</span><span class="n">unique</span><span class="o">=</span><span class="kc">false</span><span class="p">,</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;</span><span class="s">RTREE&#39;</span><span class="p">,</span> <span class="n">parts</span><span class="o">=</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;</span><span class="s">ARRAY&#39;</span><span class="p">}})</span>
+<span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">rtree_example</span><span class="p">:</span><span class="n">insert</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">}}</span>
+<span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">rtree_example</span><span class="p">:</span><span class="n">insert</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">}}</span>
+<span class="gp">tarantool&gt; </span><span class="n">box</span><span class="p">.</span><span class="n">space</span><span class="p">.</span><span class="n">rtree_example</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="n">rtree</span><span class="p">:</span><span class="nb">select</span><span class="p">({</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">},</span> <span class="p">{</span><span class="n">iterator</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">GT&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Мы получим следующий результат:</p>
+<div class="highlight-tarantoolsession"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="p p-Indicator">-</span> <span class="p p-Indicator">-</span> <span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">,</span> <span class="p p-Indicator">[</span><span class="nv">3</span><span class="p p-Indicator">,</span> <span class="nv">5</span><span class="p p-Indicator">,</span> <span class="nv">9</span><span class="p p-Indicator">,</span> <span class="nv">10</span><span class="p p-Indicator">]]</span>
+<span class="nn">...</span>
+</pre></div>
+</div>
+<p>because a rectangle whose corners are at coordinates <code class="docutils literal"><span class="pre">4,7,5,9</span></code> is entirely
+within a rectangle whose corners are at coordinates <code class="docutils literal"><span class="pre">3,5,9,10</span></code>.</p>
+</div></blockquote>
+</li>
+</ul>
+<p>Additionally, there exist <a class="reference internal" href="box_index.html#box-index-index-pairs"><span class="std std-ref">index iterator operations</span></a>.
+They can only be used with code in Lua and C/C++. Index iterators are for
+traversing indexes one key at a time, taking advantage of features that are
+specific to an index type, for example evaluating Boolean expressions when
+traversing BITSET indexes, or going in descending order when traversing TREE indexes.</p>
+<p>See also other index operations like <a class="reference internal" href="box_index.html#box-index-alter"><span class="std std-ref">alter()</span></a> and
+<a class="reference internal" href="box_index.html#box-index-drop"><span class="std std-ref">drop()</span></a> in reference for <a class="reference internal" href="box_index.html#box-index"><span class="std std-ref">box.index</span></a> submodule.</p>
+</div>
+<div class="section" id="complexity-factors">
+<h3>3.1.6.3. Complexity factors<a class="headerlink" href="#complexity-factors" title="Ссылка на этот заголовок">¶</a></h3>
+<p>In reference for <a class="reference internal" href="box_space.html#box-space"><span class="std std-ref">box.space</span></a> and <a class="reference internal" href="box_index.html#box-index"><span class="std std-ref">box.index</span></a>
+submodules, there are notes about which complexity factors might affect the
+resource usage of each function.</p>
+<div class="table container">
+<table border="1" class="left-align-column-1 left-align-column-2 docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Complexity
+factor</th>
+<th class="head">Effect</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last">Размер индекса</p>
+</td>
+<td>The number of index keys is the same as the number
+of tuples in the data set. For a TREE index, if
+there are more keys, then the lookup time will be
+greater, although of course the effect is not
+linear. For a HASH index, if there are more keys,
+then there is more RAM used, but the number of
+low-level steps tends to remain constant.</td>
+</tr>
+<tr class="row-odd"><td><p class="first last">Тип индекса</p>
+</td>
+<td>Typically, a HASH index is faster than a TREE index
+if the number of tuples in the space is greater
+than one.</td>
+</tr>
+<tr class="row-even"><td><p class="first last">Количество обращений к индексам</p>
+</td>
+<td><p class="first">Ordinarily, only one index is accessed to retrieve
+one tuple. But to update the tuple, there must be N
+accesses if the space has N different indexes.</p>
+<p class="last">Note re storage engine: Vinyl optimizes away such
+accesses if secondary index fields are unchanged by
+the update. So, this complexity factor applies only to
+memtx, since it always makes a full-tuple copy on every
+update.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last">Количество обращений к кортежам</p>
+</td>
+<td>A few requests, for example SELECT, can retrieve
+multiple tuples. This factor is usually less
+important than the others.</td>
+</tr>
+<tr class="row-even"><td><p class="first last">Настройки WAL</p>
+</td>
+<td><p class="first last">Важным параметром для записи в WAL является <a class="reference internal" href="../../reference/configuration/index.html#cfg-binary-logging-snapshots-wal-mode"><span class="std std-ref">wal_mode</span></a>. Если запись в WAL отключена или задана запись с задержкой, но этот фактор не так важен. Если же запись в WAL производится при каждом запросе на изменение данных, то при каждом таком запросе приходится ждать, пока отработает обращение к более медленному диску, и данный фактор становится важнее всех остальных.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+  </article>
+
+            
+            
+  
+    
+      <div class="b-page_over-tail">
+    
+    
+      <div class="b-page_over-prev">
+        <a href="index.html"
+           class="b-prev b-ellipsis"
+           title="3. Функционал СУБД">3. Функционал СУБД</a>
+      </div>
+    
+    <div class="b-page_over-lang">
+      <ul class="b-page_over-lang-list">
+        <li class="b-page_over-lang-item">
+          <a href="../../../_sources/doc/book/box/data_model.txt"
+             class="b-page_over-lang-url"> Source </a>
+        </li>
+      </ul>
+    </div>
+    
+      <div class="b-page_over-next">
+        <a href="atomic.html"
+           class="b-next b-ellipsis"
+           title="3.2. Контроль транзакций">3.2. Контроль транзакций</a>
+      </div>
+    
+    </div>
+  
+</div>
+        </div>
+      </div>
+    
+  
+
+      </div>
+    </div>
+    <!-- FOOTER > -->
+    
+<footer class="b-footer">
+  <div class="b-footer-wrapper">
+    <nav class="b-footer_menu">
+      
+  <ul class="b-menu">
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../index.html" class="b-menu-item-url">Overview</a>
+      </li>
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../try.html" class="b-menu-item-url">Try</a>
+      </li>
+    
+      
+      <li class="b-menu-item p-active">
+      
+        <a href="../../../doc.html" class="b-menu-item-url">Documentation</a>
+      </li>
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../download.html" class="b-menu-item-url">Download</a>
+      </li>
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../careers.html" class="b-menu-item-url">Careers</a>
+      </li>
+    
+      
+      <li class="b-menu-item">
+      
+        <a href="../../../rocks.html" class="b-menu-item-url">Rocks</a>
+      </li>
+    
+  </ul>
+
+      <div class="b-footer-other">
+        <a href="http://15.tarantool.org">1.5 web site and downloads</a>
+      </div>
+    </nav>
+  </div>
+</footer>
+
+    <!-- < FOOTER -->
+    <div id="mobile-checker"></div>
+  </body>
+</html>
+
