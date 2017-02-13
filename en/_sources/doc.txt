@@ -8,8 +8,8 @@ Tarantool - Documentation
     :title: Tarantool manual
     :class: b-block-lightgray b-downloads-top
 
-    Here is a **complete Tarantool manual**. It embraces all aspects of using
-    Tarantool: from introductory information and excercises for beginners
+    Here is a **complete manual for Tarantool 1.7**. It embraces all aspects of
+    using Tarantool: from introductory information and exercises for beginners
     -- to advanced instructions and detailed references for power users and
     contributors.
 
@@ -23,7 +23,8 @@ Tarantool - Documentation
 
         .. NOTE::
 
-            Документация находится в процессе перевода.
+            Документация находится в процессе перевода и может
+            отставать от английской версии.
 
     .. ddlist::
 
@@ -92,9 +93,9 @@ Tarantool - Documentation
 .. _Lua tutorials: doc/tutorials/lua_tutorials.html
 .. _C tutorial: doc/tutorials/c_tutorial.html
 .. _Preface: doc/book/intro.html
-.. _Getting started: doc/book/user_guide_getting_started.html
+.. _Getting started: doc/book/getting_started/index.html
 .. _Database: doc/book/box/index.html
-.. _Application server: doc/book/app_server.html
+.. _Application server: doc/book/app_server/index.html
 .. _Server administration: doc/book/administration.html
 .. _Replication: doc/book/replication/index.html
 .. _Connectors: doc/book/connectors/index.html

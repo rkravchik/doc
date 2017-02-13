@@ -1,5 +1,7 @@
+.. _built_in_modules:
+
 ================================================================================
-Built-in library reference
+Built-in modules reference
 ================================================================================
 
 This reference covers Tarantool's built-in Lua modules.
@@ -31,6 +33,7 @@ This reference covers Tarantool's built-in Lua modules.
     log
     msgpack
     net_box
+    osmodule
     pickle
     socket
     strict
